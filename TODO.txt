@@ -1,0 +1,18 @@
+[ ](A) 2017-07-05 -> ____-__-__: @args.py@checkargs
+    > Write checkargs
+[ ](A) 2017-07-05 -> ____-__-__: @args.py@checkgroup
+    > write checkgroup
+[ ](A) 2017-07-04 -> ____-__-__: @args.py
+    > Complete all the other modules
+[ ](B) 2017-07-04 -> ____-__-__: @global
+    > Separate modules into different files
+        Try importing them in args.py
+        don't forget to check for docstrings and so
+[ ](B) 2017-07-05 -> ____-__-__: @global
+    > Define errors instead of sys.exit
+        Remember to import sys inside __init() instead of global
+[ ](C) 2017-07-04 -> ____-__-__: @README.md
+    Update README.md
+
+[x](A) 2017-07-04 -> 2017-07-05: @args.py@setargs by mazenamr
+    > Add the option for multiple parameters

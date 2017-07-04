@@ -14,16 +14,16 @@ Python 3 or newer.
 
 #### For A System-wide Installation
 
-##### 1 - Clone it
+##### 1 - Download [**args.py**](https://raw.githubusercontent.com/mazenamr/args/master/args.py)
 
 ```sh
-git clone https://github.com/mazenamr/args.git
+curl -o args.py https://raw.githubusercontent.com/mazenamr/args/master/args.py
 ```
 
-##### 2 - Copy the contents to one of the Python Paths
+##### 2 - Copy [**args.py**](https://raw.githubusercontent.com/mazenamr/args/master/args.py) To One Of Your *Python Paths*
 
 ```sh
-cp ./args /usr/lib/python3.6
+cp ./args.py /usr/lib/python3.6
 ```
 
 ###### To View Your Python Paths
@@ -35,29 +35,29 @@ print(path)
 
 #### For Usage Within A Project
 
-##### 1 - Clone it
+##### 1 - Download [**args.py**](https://raw.githubusercontent.com/mazenamr/args/master/args.py)
 
 ```sh
-git clone https://github.com/mazenamr/args.git
+curl -o args.py https://raw.githubusercontent.com/mazenamr/args/master/args.py
 ```
 
-##### 2 - Add it to your project folder
+##### 2 - Copy [**args.py**](https://raw.githubusercontent.com/mazenamr/args/master/args.py) To Your Project's Directory
 
 ```sh
-cp -r ./args ./myproject
+cp -r ./args.py ./myproject
 ```
 
-##### 3 - Don't forget to give me credit :wink:
+##### 3 - Don't Forget To Mention Me :wink:
 
 ## Usage
 
-### 1 - Importing The library
+### 1 - Importing The Library
 
 ```py
 import args
 ```
 
-### 2 - Creating A Dictionary Of Arguments
+### 2 - Getting The User's Arguments And Their Parameters
 
 ```py
 import args
@@ -69,7 +69,12 @@ allargs = {"help": 'h',
            "verbose": 'v',
            "silent": 's'}
 
-userargs = args.getargs(allargs)
+args.setargs(allargs)
+print(args.argvalues)
+
+>>> {"input": ["in.txt"],
+     "output": ["out.txt"],
+     "verbose": None}
 ```
 
 ### 3 - Checking If All Required Arguments Exist
@@ -84,9 +89,9 @@ allargs = {"help": 'h',
            "verbose": 'v',
            "silent": 's'}
 
-userargs = args.getargs(allargs)
+args.setargs(allargs)
 
-if not args.checkargs(["input", "interactive"], [i for i in userargs]):
+if not args.checkargs(["input", "interactive"]):
     print("You must either provide an input file or choose the interactive mode!")
     sys.exit(7)
 ```
@@ -103,48 +108,54 @@ allargs = {"help": 'h',
            "verbose": 'v',
            "silent": 's'}
 
-userargs = args.getargs(allargs)
+args.setargs(allargs)
 
-if args.checkgroup(["verbose", "silent"], [i for i in userargs]):
+if args.checkgroup(["verbose", "silent"]):
     print("You can't use the verbose mode and silent mode together!")
     sys.exit(7)
 ```
 
 ## Modules
 
-### 1 - getargs(args)
+### 1 - setargs(allargs)
 
 #### Description
 
-Takes a dictionary of arguments as input in the form of {*Long Form*: *Short Form*}.
+Takes a dictionary of arguments as input in the form of { *Long Form*: *Short Form* }. and updates **argvalues** (**args.argvalues**) with the arguments *in the long form* and a list of their parameters.
 
-Returns a dictionary of user arguments and their parameters in the form of {*Long Form*: *Parameters*}.
+> { *Long Form*: [ *Parameters* ] }
 
 #### Notes
 
 + The short form has to be only one letter long.
 
-+ You can replace short form by None if no short form exists.
++ The short form is case sensitive.
+
++ Enter *None* instead of a short form is a short form doesn't exist.
 
 + Arguments that take a parameter have to end with a column (:) in their long form.
+
++ Arguments can take more than one parameter through adding multiple columns (:) in their long form.
 
 + Arguments that don't take a parameter are returned with a parameter value *None*.
 
 #### Inputs
 
-##### 1 - args
+##### allargs
 
-A dictionary of valid arguments. Form: {*Long Form*: *Short form*}
+A dictionary of valid arguments.
 
-#### Output
-
-A dictionary of user arguments and their parameters if required.
-Form: {*Long Form*: *Parameters*}
+> { *Long Form*: *Short Form* }
 
 #### Error Codes
 
-+ 77 - Unknown argument.
-+ 78 - No parameter for an argument that requires one.
++ 77 - The *short form* of the argument is longer than one character.
+
++ 78 - An argument is provided by the user in the place of a parameter.
+
++ 79 - A parameter is provided by the user in the place of an argument.
+
++ 80 - An Unknown argument is provided by the user.
 
 #### Examples
 
@@ -158,32 +169,33 @@ allargs = {"help": 'h',
            "verbose": 'v',
            "silent": 's'}
 
-print(getargs(allargs))
+args.setargs(allargs)
+print(args.argvalues)
 
->>> {"input": "in.text",
-     "output": "out.txt",
+>>> {"input": ["in.txt"],
+     "output": ["out.txt"],
      "verbose": None}
 ```
 
-### 2 - checkargs(args, userargs)
+### 2 - checkargs(args)
 
 #### Description
 
-Takes a list of args and checks if at least one of them exists.
-
-Returns True or False.
+Takes a list of args and checks if at least one of them exists and returns True or False.
 
 #### Notes
 
-+ If you use the output of getargs in userargs, be sure to provide arguments in the long form.
++ The arguments should be *in the long form*.
+
++ Don't add columns (:) for arguments that take parameters.
 
 #### Inputs
 
-##### 1 - args
-A list of arguments which one of has to exist. Form: [*args*]
+##### args
 
-##### 2 - userargs
-A list of arguments provided by the user. Form: [*args*]
+A list of arguments that you want to check if any of them exist.
+
+> [ *Long Form* ]
 
 #### Output
 
@@ -201,34 +213,32 @@ allargs = {"help": 'h',
            "verbose": 'v',
            "silent": 's'}
 
-userargs = args.getargs(allargs)
+args.setargs(allargs)
 
-if not args.checkargs(["input", "interactive"], [i for i in usera]):
+if not args.checkargs(["input", "interactive"]):
     print("You must either provide an input file or choose the interactive mode!")
     sys.exit(7)
 ```
 
-### 3 - checkgroup(args, userargs)
+### 3 - checkgroup(args)
 
 #### Description
 
-Takes a list of args and checks if all of them exist.
-
-Returns True or False
+Takes a list of args and checks if all of them exist and returns True or False.
 
 #### Notes
 
-+ If you use the output of getargs in userargs, be sure to provide arguments in the long form.
++ The arguments should be in the long form.
+
++ Don't add columns (:) for arguments that take parameters.
 
 #### Inputs
 
-##### 1 - args
+##### args
 
-A list of arguments that must all exist. Form: [*args*]
+A list of arguments that you want to check if all of them exist.
 
-##### 2 - userargs
-
-A list of arguments provided by the user.Form: [*args*]
+> [ *Long Form* ]
 
 #### Output
 
@@ -246,12 +256,12 @@ allargs = {"help": 'h',
            "verbose": 'v',
            "silent": 's'}
 
-userargs = args.getargs(allargs)
+args.setargs(allargs)
 
-if args.checkgroup(["verbose", "silent"], [i for i in userargs]):
+if args.checkgroup(["verbose", "silent"]):
     print("You can't use the verbose mode and the silent mode together!")
     sys.exit(7)
 ```
 ## License
 
-This library is licensed under the GNU Affero General Public License v3.0 - see [LICENSE](LICENSE) file for more details.
+This library is licensed under the GNU Affero General Public License v3.0 - see [**LICENSE**](LICENSE) file for more details.
