@@ -14,13 +14,13 @@ Python 3 or newer.
 
 #### For A System-wide Installation
 
-##### 1 - Download [**args.py**](https://raw.githubusercontent.com/mazenamr/args/master/args.py)
+##### 1 - Download [**args.py**](args.py)
 
 ```sh
 curl -o args.py https://raw.githubusercontent.com/mazenamr/args/master/args.py
 ```
 
-##### 2 - Copy [**args.py**](https://raw.githubusercontent.com/mazenamr/args/master/args.py) To One Of Your *Python Paths*
+##### 2 - Copy [**args.py**](args.py) To One Of Your *Python Paths*
 
 ```sh
 cp ./args.py /usr/lib/python3.6
@@ -35,19 +35,19 @@ print(path)
 
 #### For Usage Within A Project
 
-##### 1 - Download [**args.py**](https://raw.githubusercontent.com/mazenamr/args/master/args.py)
+##### 1 - Download [**args.py**](args.py)
 
 ```sh
 curl -o args.py https://raw.githubusercontent.com/mazenamr/args/master/args.py
 ```
 
-##### 2 - Copy [**args.py**](https://raw.githubusercontent.com/mazenamr/args/master/args.py) To Your Project's Directory
+##### 2 - Copy [**args.py**](args.py) To Your Project's Directory
 
 ```sh
 cp -r ./args.py ./myproject
 ```
 
-##### 3 - Don't Forget To Mention Me :wink:
+##### 3 - Don't Forget To Mention Me! :wink:
 
 ## Usage
 
