@@ -1,16 +1,22 @@
-[ ](B) 2017-07-04 -> ____-__-__: @global
+[ ](B) 2017-07-04: @global
     > Separate modules into different files
         Try importing them in args.py
         don't forget to check for docstrings and so
-[ ](B) 2017-07-05 -> ____-__-__: @global
+[ ](B) 2017-07-05: @global
     > Define errors instead of sys.exit
         Remember to import sys inside __init() instead of global
-[ ](C) 2017-07-04 -> ____-__-__: @README.md
-    > Complete README.md
+[ ](B) 2017-07-06: @args.py
+    > Improve checkargs and checkgroup
+        Return more info that True or False
+        for example which of the arguments was or was not provided
 
 [x](A) 2017-07-04 -> 2017-07-05: @args.py@setargs by mazenamr
     > Add the option for multiple parameters
-[x](A) 2017-07-05 -> 2017-07-05: @args.py@checkargs
+[x](A) 2017-07-05 -> 2017-07-05: @args.py@checkargs by mazenamr
     > Write checkargs
-[x](A) 2017-07-05 -> 2017-07-05: @args.py@checkgroup
+[x](A) 2017-07-05 -> 2017-07-05: @args.py@checkgroup by mazenamr
     > write checkgroup
+[x](B) 2017-07-05 -> 2017-07-06: @args.py by mazenamr
+    > Comment args.py
+[x](C) 2017-07-04 -> 2017-07-05: @README.md by mazenamr
+    > Complete README.md

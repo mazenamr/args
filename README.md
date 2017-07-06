@@ -157,6 +157,8 @@ A dictionary of valid arguments.
 
 + 80 - An Unknown argument is provided by the user.
 
++ 81 - The user didn't provide enough parameters for an argument.
+
 #### Examples
 
 ```py
